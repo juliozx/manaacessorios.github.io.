@@ -1,4 +1,20 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* Login/cadastro Mana: campos claros, inclusive com autofill e tema escuro do navegador */
+#manaLogin { position:fixed; inset:0; z-index:100; background:rgba(73,45,48,.25); display:flex; align-items:center; justify-content:center; padding:18px; }
+#manaLogin[hidden] { display:none!important; }
+#manaLogin .mana-login-card { width:min(100%,420px); max-height:90vh; overflow:auto; background:#fffaf7; color:#3b2b2a; border:1px solid #ecdcd2; border-radius:20px; padding:24px; box-shadow:0 18px 50px rgba(91,48,56,.17); }
+#manaLogin h2 { margin:0 0 8px; color:#3b2b2a; }
+#manaLogin p { color:#765d5c; }
+#manaLogin label { display:block; font-weight:600; margin:12px 0; }
+#manaLogin label[hidden] { display:none!important; }
+#manaLogin input, #manaLogin input[type=email], #manaLogin input[type=password], #manaLogin input[type=text] { display:block; width:100%; margin-top:6px; padding:12px; border:1px solid #e2c6c5; border-radius:11px; background:#fff!important; color:#3b2b2a!important; color-scheme:light; -webkit-text-fill-color:#3b2b2a; outline-offset:2px; }
+#manaLogin input:focus { border-color:#b4586a; outline:2px solid #efd4d7; }
+#manaLogin input:-webkit-autofill { -webkit-box-shadow:0 0 0 1000px #fff inset!important; -webkit-text-fill-color:#3b2b2a!important; }
+#manaLogin .btn { margin:5px 4px 4px 0; background:#fff; color:#5d4143; border:1px solid #e8cfc8; }
+#manaLogin .btn.pri { background:#b4586a; border-color:#b4586a; color:white; }
+#manaLogin #manaLoginMsg { overflow-wrap:anywhere; font-size:13px; }
+
+</style></head><body>
 <title>Mana Semijoias</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,23 +320,48 @@ var sb = null;
 var initialData = JSON.parse(JSON.stringify(DATA));
 function photoUrl(id) { return !id ? "" : (/^https:\/\//i.test(id) ? id : ""); }
 function authUI() {
+  if (!sb) { toast("Aguarde a conexão com o Supabase.", true); return; }
   var modal = document.getElementById("manaLogin");
   if (!modal) {
     modal = document.createElement("div"); modal.id="manaLogin"; modal.hidden=true;
-    modal.innerHTML='<div class="mana-login-card"><h2>Acesso administrativo</h2><p>Entre com a conta cadastrada no Supabase.</p><form id="manaLoginForm"><label>E-mail<input type="email" name="email" required autocomplete="username"></label><label>Senha<input type="password" name="password" required autocomplete="current-password"></label><button class="btn pri" type="submit">Entrar</button><button class="btn" type="button" id="manaCancel">Cancelar</button><p id="manaLoginMsg" role="alert"></p></form></div>';
+    modal.innerHTML='<div class="mana-login-card"><h2 id="manaAuthTitle">Entrar na Mana Acessórios</h2><p id="manaAuthDesc">Acesse sua conta ou crie uma gratuitamente.</p><form id="manaLoginForm"><label id="manaNameLabel" hidden>Nome<input type="text" name="nome" autocomplete="name" maxlength="80"></label><label>E-mail<input type="email" name="email" required autocomplete="email"></label><label>Senha<input type="password" name="password" required minlength="6" autocomplete="current-password"></label><button class="btn pri" id="manaAuthSubmit" type="submit">Entrar</button><button class="btn" id="manaAuthToggle" type="button">Criar conta</button><button class="btn" type="button" id="manaCancel">Cancelar</button><p id="manaLoginMsg" role="status"></p></form></div>';
     document.body.appendChild(modal);
-    document.getElementById("manaCancel").onclick=function(){modal.hidden=true;};
-    document.getElementById("manaLoginForm").onsubmit=async function(e){e.preventDefault();var f=e.target;var b=f.querySelector('[type="submit"]');b.disabled=true;try {var r=await sb.auth.signInWithPassword({email:f.email.value.trim(),password:f.password.value});if(r.error)throw r.error;await checkAdmin();if(!isAdmin)throw Error("Esta conta não está na tabela de administradores.");modal.hidden=true;openAdmin();}catch(err){document.getElementById("manaLoginMsg").textContent=err.message;}finally{b.disabled=false;}};
+    var register=false;
+    function setMode(next){register=next;document.getElementById('manaAuthTitle').textContent=register?'Criar conta':'Entrar na Mana Acessórios';document.getElementById('manaNameLabel').hidden=!register;document.getElementById('manaAuthSubmit').textContent=register?'Cadastrar':'Entrar';document.getElementById('manaAuthToggle').textContent=register?'Já tenho conta':'Criar conta';document.getElementById('manaLoginMsg').textContent='';modal.querySelector('[name=password]').autocomplete=register?'new-password':'current-password';}
+    document.getElementById('manaAuthToggle').onclick=function(){setMode(!register);};
+    document.getElementById('manaCancel').onclick=function(){modal.hidden=true;};
+    document.getElementById('manaLoginForm').onsubmit=async function(e){
+      e.preventDefault();var f=e.target;var b=document.getElementById('manaAuthSubmit');b.disabled=true;
+      var email=f.elements.email.value.trim(),password=f.elements.password.value;
+      try {
+        if(register){
+          var nome=f.elements.nome.value.trim();if(!nome)throw Error('Informe seu nome.');
+          var r=await sb.auth.signUp({email:email,password:password,options:{data:{full_name:nome}}});
+          if(r.error)throw r.error;
+          document.getElementById('manaLoginMsg').textContent=r.data.session?'Cadastro realizado! Você já está conectado.':'Cadastro solicitado. Confira seu e-mail para confirmar a conta antes de entrar.';
+          if(r.data.session){await checkAdmin();modal.hidden=true;}
+          else setTimeout(function(){setMode(false);document.getElementById('manaLoginMsg').textContent='Confira seu e-mail para confirmar o cadastro.';},1200);
+        }else{
+          var r=await sb.auth.signInWithPassword({email:email,password:password});if(r.error)throw r.error;
+          await checkAdmin();modal.hidden=true;if(isAdmin)openAdmin();else toast('Bem-vindo à Mana Acessórios!');
+        }
+      }catch(err){document.getElementById('manaLoginMsg').textContent=err.message||String(err);}finally{b.disabled=false;}
+    };
   }
   modal.hidden=false;
 }
 async function checkAdmin(){
-  var r=await sb.auth.getUser();var ok=false;
-  if(r.data && r.data.user){var x=await sb.from('admins').select('user_id').eq('user_id',r.data.user.id).maybeSingle();ok=!x.error && !!x.data;}
+  var r=await sb.auth.getUser();var user=r.data&&r.data.user,ok=false;
+  if(user){var x=await sb.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();ok=!x.error&&!!x.data;}
   isAdmin=ok;
-  var b=$("admBtn");b.hidden=false;b.title=ok?'Abrir painel administrativo':'Entrar como administrador';
-  b.onclick=ok?openAdmin:authUI;
-  if(!ok && !$("adm").hidden)closeAdmin();
+  var b=$("admBtn");b.hidden=false;
+  b.title=ok?'Abrir painel administrativo':user?'Minha conta':'Fazer login ou cadastro';
+  b.textContent=ok?'⚙ Administrador':user?'Minha conta':'Entrar / Cadastrar';
+  b.onclick=ok?openAdmin:user?function(){
+    var sair=confirm('Você está conectado como '+user.email+'. Deseja sair da conta?');
+    if(sair)sb.auth.signOut().then(function(){checkAdmin();toast('Você saiu da conta.');});
+  }:authUI;
+  if(!ok&&!$("adm").hidden)closeAdmin();
   return ok;
 }
 function productRow(p){return {id:p.id,nome:p.nome,categoria:p.cat,preco:p.preco,preco_promocional:p.promo,estoque:p.estoque,foto_url:photoUrl(p.fotoId)||null,ativo:p.ativo!==false};}
@@ -924,6 +965,7 @@ async function publicar() {
 DATA.produtos=[];DATA.cupons=[];renderStore();
 (async function boot(){
   $("admBtn").hidden=false;
+  $("admBtn").textContent="Entrar / Cadastrar";
   $("admBtn").onclick=authUI;
   try {
     if(!window.supabase)throw Error('Biblioteca Supabase indisponível.');
@@ -936,7 +978,7 @@ DATA.produtos=[];DATA.cupons=[];renderStore();
       var saved=ssGet('mana_draft');
       if(saved){try{var d=JSON.parse(saved);if(JSON.stringify(d)!==JSON.stringify(DATA))A.recover=d;}catch(e){ssDel('mana_draft');}}
     }
-  }catch(e){console.error(e);toast('Não foi possível carregar dados do Supabase: '+e.message,true);DATA.produtos=[];DATA.cupons=[];renderStore();}
+  }catch(e){console.error(e);toast('Falha na conexão com o Supabase. Verifique a rede e o endereço do projeto. Detalhes no console (F12).',true);DATA.produtos=[];DATA.cupons=[];renderStore();}
 })();
 })();
 </script>
