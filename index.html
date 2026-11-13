@@ -352,7 +352,7 @@ function authUI() {
 }
 async function checkAdmin(){
   var r=await sb.auth.getUser();var user=r.data&&r.data.user,ok=false;
-  if(user){var x=await sb.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();ok=!x.error&&!!x.data;}
+  if(user){var x=await sb.rpc('sou_admin');if(x.error)console.error('Falha ao verificar administrador:',x.error);ok=!x.error&&x.data===true;}
   isAdmin=ok;
   var b=$("admBtn");b.hidden=false;
   b.title=ok?'Abrir painel administrativo':user?'Minha conta':'Fazer login ou cadastro';
