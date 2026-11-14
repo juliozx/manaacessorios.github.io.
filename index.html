@@ -269,12 +269,45 @@ footer { max-width: 1040px; margin: 36px auto 0; color: var(--muted); font-size:
   .bar { grid-template-columns: 90px 1fr 28px; }
   .draftbar { max-width: calc(100% - 24px); bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Mana Studio — identidade editorial, clean e responsiva */
+:root{--bg:#fcfaf8;--surface:#fff;--ink:#302725;--muted:#82736f;--line:#eee7e1;--soft:#f7f0ec;--accent:#a45167;--accent-soft:#ead3d4;--shadow:0 16px 42px rgba(57,35,31,.07);--font-display:"Bricolage Grotesque",system-ui,sans-serif}
+body{background:var(--bg)}
+.wrap,.brand{max-width:1280px}
+.top{border-bottom:1px solid var(--line);box-shadow:0 2px 16px rgba(45,28,26,.025)}
+.brand{padding-block:18px}.brand h1{font-size:24px;letter-spacing:-.045em}.brand p{font-size:12px;letter-spacing:.015em}.logo{width:56px;height:56px;background:#f1d6ce}
+.ig-btn{background:transparent;border-color:var(--line);color:var(--ink);transition:.2s}.ig-btn:hover{background:var(--soft);border-color:var(--accent-soft)}
+.anns{max-width:1280px;margin:20px auto 0;display:block}
+.mana-carousel{position:relative;overflow:hidden;width:100%;height:clamp(230px,33vw,480px);background:#ead8d2}
+.mana-slides,.mana-slide{position:absolute;inset:0}.mana-slide{opacity:0;visibility:hidden;transition:opacity .65s ease,visibility .65s;overflow:hidden}.mana-slide.active{opacity:1;visibility:visible;z-index:1}
+.mana-hero-media{display:block;width:100%;height:100%;object-fit:cover}
+.mana-hero-content{position:absolute;inset:0;display:flex;align-items:center;padding:clamp(25px,6vw,92px);pointer-events:none}
+.mana-slide.has-media .mana-hero-content{background:linear-gradient(90deg,rgba(29,18,17,.48),transparent 72%)}
+.mana-slide.no-media{background:linear-gradient(120deg,#ead0c9,#f5e8e2 60%,#d7a8b1)}
+.mana-hero-copy{max-width:480px;color:#fff;text-shadow:0 1px 15px rgba(0,0,0,.16)}
+.mana-slide.no-media .mana-hero-copy{color:#352724;text-shadow:none}
+.mana-hero-copy h2{font:700 clamp(25px,4vw,58px)/1.05 var(--font-display);letter-spacing:-.045em;margin:0 0 12px}
+.mana-hero-copy p{font-size:clamp(13px,1.5vw,17px);margin:0 0 20px;line-height:1.5}
+.mana-hero-link{display:inline-flex;gap:18px;align-items:center;padding:12px 18px;background:#fff;color:#302725;text-decoration:none;font-size:13px;font-weight:600;text-shadow:none;pointer-events:auto}
+.mana-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#362a28;font-size:32px;line-height:1;display:grid;place-items:center;box-shadow:0 3px 18px #0001}
+.mana-arrow.prev{left:16px}.mana-arrow.next{right:16px}.mana-arrow:hover{background:#fff}
+.mana-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:9px}
+.mana-dots button{width:7px;height:7px;padding:0;border:0;border-radius:20px;background:#fff9;transition:width .2s,background .2s;box-shadow:0 1px 4px #0003}
+.mana-dots button[aria-current=true]{width:25px;background:#fff}
+.banner{max-width:1280px;background:#f5ede8;border-radius:0;margin-top:0;padding:15px 24px;gap:12px}.banner strong{font-size:14px;letter-spacing:-.015em}.banner ul{font-size:12px;color:#71615e}
+.chips{padding:26px 0 15px;gap:9px}.chip{border-radius:4px;padding:10px 17px;font-size:13px}.chip[aria-pressed=true]{font-weight:600}
+.search input{border-radius:5px;padding-block:14px}.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:24px 16px}
+.card{border:0;border-radius:3px;background:transparent;box-shadow:none;transition:transform .2s}.card:hover{transform:translateY(-3px)}
+.card img{transition:transform .35s}.card:hover img{transform:scale(1.035)}
+@media(max-width:640px){.brand{padding-block:12px}.brand h1{font-size:20px}.brand p{font-size:11px}.logo{width:46px;height:46px}.anns{margin:10px auto 0}.mana-carousel{height:clamp(260px,75vw,380px)}.mana-hero-content{padding:28px 48px}.mana-hero-copy h2{font-size:27px}.mana-hero-copy p{font-size:13px}.mana-arrow{width:31px;height:31px;font-size:24px}.mana-arrow.prev{left:8px}.mana-arrow.next{right:8px}.banner{padding:14px 16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px}}
+@media(prefers-reduced-motion:reduce){.mana-slide,.card,.card img{transition:none}}
 </style>
 
-<div id="root"></div>
+<div id="root"></div><div id="mana-load-error" role="alert" style="position:fixed;bottom:0;left:0;right:0;background:#fff4ed;color:#a8442f;text-align:center;z-index:100"></div>
 
-<script type="application/json" id="data">{"store":{"logoId":"e364dd4a3956d21dda834e0b1d87c2e1","nome":"Mana Acessórios","slogan":"O toque de sofisticação que faltava no seu estilo.","iniciais":"MA","whatsapp":"5519986084854","bannerTitulo":"Novidades da semana","bannerItens":["Qualidade que encanta","Envio para todo o Brasil","Pedido pelo WhatsApp"]},"categorias":["Colares","Pulseiras","Anéis","Brincos","Hand chain"],"produtos":[{"id":1,"nome":"Crucifixo dourado","cat":"Colares","preco":49.9,"promo":null,"estoque":7,"ativo":true,"fotoId":""},{"id":2,"nome":"Riviera citrino folheada","cat":"Colares","preco":44.9,"promo":null,"estoque":6,"ativo":true,"fotoId":"81867deefc085b687cc361ca8a325a8d"},{"id":3,"nome":"Choker pérola barroca","cat":"Colares","preco":54.9,"promo":44.9,"estoque":4,"ativo":true,"fotoId":""},{"id":4,"nome":"Ponto de luz cristal","cat":"Colares","preco":39.9,"promo":null,"estoque":12,"ativo":true,"fotoId":""},{"id":5,"nome":"Pulseira elos groumet","cat":"Pulseiras","preco":42.9,"promo":null,"estoque":9,"ativo":true,"fotoId":""},{"id":6,"nome":"Pulseira riviera zircônia","cat":"Pulseiras","preco":64.9,"promo":54.9,"estoque":3,"ativo":true,"fotoId":""},{"id":7,"nome":"Pulseira coração delicado","cat":"Pulseiras","preco":34.9,"promo":null,"estoque":0,"ativo":true,"fotoId":""},{"id":8,"nome":"Anel solitário brilhante","cat":"Anéis","preco":29.9,"promo":null,"estoque":15,"ativo":true,"fotoId":""},{"id":9,"nome":"Anel ajustável trançado","cat":"Anéis","preco":32.9,"promo":null,"estoque":8,"ativo":true,"fotoId":""},{"id":10,"nome":"Anel meia-lua cravejado","cat":"Anéis","preco":37.9,"promo":31.9,"estoque":5,"ativo":true,"fotoId":""},{"id":11,"nome":"Brinco argola média lisa","cat":"Brincos","preco":27.9,"promo":null,"estoque":20,"ativo":true,"fotoId":""},{"id":12,"nome":"Brinco ramos cravejados","cat":"Brincos","preco":34.9,"promo":null,"estoque":10,"ativo":true,"fotoId":""},{"id":13,"nome":"Brinco gota cristal","cat":"Brincos","preco":39.9,"promo":null,"estoque":6,"ativo":true,"fotoId":""},{"id":14,"nome":"Hand chain estrela","cat":"Hand chain","preco":59.9,"promo":null,"estoque":4,"ativo":true,"fotoId":""},{"id":15,"nome":"Hand chain correntes finas","cat":"Hand chain","preco":64.9,"promo":56.9,"estoque":2,"ativo":true,"fotoId":""},{"id":16,"nome":"Conjunto ramos dourado","cat":"Colares","preco":59.9,"promo":null,"estoque":10,"ativo":true,"fotoId":""}],"cupons":[{"codigo":"BEMVINDA10","tipo":"percentual","valor":10,"minimo":20,"validade":"","ativo":true},{"codigo":"PRIMEIRA5","tipo":"percentual","valor":5,"minimo":0,"validade":"","ativo":true}],"anuncios":[]}</script>
+<script type="application/json" id="data">{"store":{"logoId":"","nome":"Mana Acessórios","slogan":"O toque de sofisticação que faltava no seu estilo.","iniciais":"MA","whatsapp":"5519986084854","bannerTitulo":"Novidades da semana","bannerItens":["Qualidade que encanta","Envio para todo o Brasil","Pedido pelo WhatsApp"]},"categorias":["Colares","Pulseiras","Anéis","Brincos","Hand chain"],"produtos":[{"id":1,"nome":"Crucifixo dourado","cat":"Colares","preco":49.9,"promo":null,"estoque":7,"ativo":true,"fotoId":""},{"id":2,"nome":"Riviera citrino folheada","cat":"Colares","preco":44.9,"promo":null,"estoque":6,"ativo":true,"fotoId":""},{"id":3,"nome":"Choker pérola barroca","cat":"Colares","preco":54.9,"promo":44.9,"estoque":4,"ativo":true,"fotoId":""},{"id":4,"nome":"Ponto de luz cristal","cat":"Colares","preco":39.9,"promo":null,"estoque":12,"ativo":true,"fotoId":""},{"id":5,"nome":"Pulseira elos groumet","cat":"Pulseiras","preco":42.9,"promo":null,"estoque":9,"ativo":true,"fotoId":""},{"id":6,"nome":"Pulseira riviera zircônia","cat":"Pulseiras","preco":64.9,"promo":54.9,"estoque":3,"ativo":true,"fotoId":""},{"id":7,"nome":"Pulseira coração delicado","cat":"Pulseiras","preco":34.9,"promo":null,"estoque":0,"ativo":true,"fotoId":""},{"id":8,"nome":"Anel solitário brilhante","cat":"Anéis","preco":29.9,"promo":null,"estoque":15,"ativo":true,"fotoId":""},{"id":9,"nome":"Anel ajustável trançado","cat":"Anéis","preco":32.9,"promo":null,"estoque":8,"ativo":true,"fotoId":""},{"id":10,"nome":"Anel meia-lua cravejado","cat":"Anéis","preco":37.9,"promo":31.9,"estoque":5,"ativo":true,"fotoId":""},{"id":11,"nome":"Brinco argola média lisa","cat":"Brincos","preco":27.9,"promo":null,"estoque":20,"ativo":true,"fotoId":""},{"id":12,"nome":"Brinco ramos cravejados","cat":"Brincos","preco":34.9,"promo":null,"estoque":10,"ativo":true,"fotoId":""},{"id":13,"nome":"Brinco gota cristal","cat":"Brincos","preco":39.9,"promo":null,"estoque":6,"ativo":true,"fotoId":""},{"id":14,"nome":"Hand chain estrela","cat":"Hand chain","preco":59.9,"promo":null,"estoque":4,"ativo":true,"fotoId":""},{"id":15,"nome":"Hand chain correntes finas","cat":"Hand chain","preco":64.9,"promo":56.9,"estoque":2,"ativo":true,"fotoId":""},{"id":16,"nome":"Conjunto ramos dourado","cat":"Colares","preco":59.9,"promo":null,"estoque":10,"ativo":true,"fotoId":""}],"cupons":[{"codigo":"BEMVINDA10","tipo":"percentual","valor":10,"minimo":20,"validade":"","ativo":true},{"codigo":"PRIMEIRA5","tipo":"percentual","valor":5,"minimo":0,"validade":"","ativo":true}],"anuncios":[]}</script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script id="app">
 (function () {
 "use strict";
@@ -290,6 +323,19 @@ var HEAD = [
 var FALLBACK_RESET = ":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
 
 var DATA = JSON.parse(document.getElementById("data").textContent);
+var sb = window.supabase.createClient('https://pxewxvqozszdkbdyxucf.supabase.co','sb_publishable_YU5qQiO7-0ZwZugIkKquPw_ZetXVabY');
+var adminMode = document.documentElement.dataset.manaAdmin === 'true';
+var remoteVersion = null;
+function validImage(v) { return /^https:\/\/[^\s]+$/i.test(String(v||'')); }
+async function loadRemote() {
+ var r=await sb.from('mana_conteudo').select('conteudo,atualizado_em').eq('id',1).single();
+ if(r.error) throw r.error;
+ if(draft && dirty()) { toast('A loja foi alterada em outro acesso. Publique ou descarte suas alterações antes de recarregar.',true); return; }
+ DATA=r.data.conteudo; remoteVersion=r.data.atualizado_em;
+ draft=adminMode?clone(DATA):null;
+ renderStore(); if(adminMode && isAdmin) renderAdmin();
+}
+
 var draft = null;                     // cópia de trabalho do administrador
 var isAdmin = false, assetsApi = null;
 var $ = function (id) { return document.getElementById(id); };
@@ -334,7 +380,7 @@ function ilustracao(p) {
   return '<svg viewBox="0 0 200 250" role="img" aria-label="' + esc(p.nome) + '">' + defs + bg + (withBust ? bust : "") + art + '</svg>';
 }
 function foto(p) {
-  if (p.fotoId) return '<img src="/_blob/' + esc(p.fotoId) + '" alt="' + esc(p.nome) + '" loading="lazy">';
+  if (validImage(p.fotoId)) return '<img src="' + esc(p.fotoId) + '" alt="' + esc(p.nome) + '" loading="lazy">';
   return ilustracao(p);
 }
 
@@ -395,7 +441,7 @@ function toast(msg, bad) {
 function renderBrand() {
   var s = cur().store;
   var lgEl = $("logo");
-  if (s.logoId) { lgEl.innerHTML = '<img src="/_blob/' + esc(s.logoId) + '" alt="Logo ' + esc(s.nome) + '">'; lgEl.style.background = "var(--surface)"; }
+  if (validImage(s.logoId)) { lgEl.innerHTML = '<img src="' + esc(s.logoId) + '" alt="Logo ' + esc(s.nome) + '">'; lgEl.style.background = "var(--surface)"; }
   else { lgEl.textContent = s.iniciais || ""; lgEl.style.background = ""; }
   $("brandName").textContent = s.nome;
   $("brandTag").textContent = s.slogan;
@@ -406,15 +452,35 @@ function renderBrand() {
   b.innerHTML = (s.bannerTitulo ? "<strong>" + esc(s.bannerTitulo) + "</strong>" : "") + (itens.length ? "<ul>" + itens.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>" : "");
 }
 function safeUrl(u) { u = String(u || "").trim(); return /^https?:\/\/[^\s]+$/i.test(u) ? u : ""; }
+var manaSlide=0, manaSlideTimer=null;
 function renderAnns() {
-  var list = cur().anuncios.filter(function (a) { return a.ativo && (a.titulo || a.texto || a.fotoId); });
-  var label = { aviso: "Aviso", promocao: "Promoção", novidade: "Novidade" };
-  $("anns").innerHTML = list.map(function (a) {
-    return '<div class="ann ' + esc(a.tipo) + '" role="note"><span class="chipt">' + (label[a.tipo] || "Aviso") + '</span><div class="txt">' +
-      (a.titulo ? "<b>" + esc(a.titulo) + "</b> " : "") + esc(a.texto) +
-      (a.fotoId ? '<div class="aimg"><img src="/_blob/' + esc(a.fotoId) + '" alt="' + esc(a.titulo || "Imagem do anúncio") + '"></div>' : "") +
-      (safeUrl(a.link) ? '<a class="alink" href="' + esc(safeUrl(a.link)) + '" target="_blank" rel="noopener noreferrer">' + esc(a.linkTexto || "Saiba mais") + "</a>" : "") + '</div></div>';
-  }).join("");
+  var list=(cur().anuncios||[]).filter(function(a){return a.ativo && (a.titulo||a.texto||a.fotoId);});
+  var el=$('anns');
+  if(!list.length){el.innerHTML='';el.hidden=true;return;}
+  el.hidden=false;
+  el.innerHTML='<div class="mana-carousel" aria-label="Destaques da Mana Acessórios"><div class="mana-slides">'+list.map(function(a,i){
+    var url=validImage(a.fotoId)?a.fotoId:'';
+    var video=url && (/\.(mp4|webm|mov)(?:[?#]|$)/i.test(url)||/\/videos\//i.test(url));
+    var media=url?(video?'<video class="mana-hero-media" src="'+esc(url)+'" muted playsinline loop preload="metadata" aria-label="'+esc(a.titulo||'Vídeo da campanha')+'"></video>':'<img class="mana-hero-media" src="'+esc(url)+'" alt="'+esc(a.titulo||'Campanha Mana Acessórios')+'" loading="'+(i===0?'eager':'lazy')+'">'):'';
+    var hasText=a.titulo||a.texto||safeUrl(a.link);
+    return '<article class="mana-slide'+(i===0?' active':'')+(url?' has-media':' no-media')+'" aria-hidden="'+(i!==0)+'">'+media+(hasText?'<div class="mana-hero-content"><div class="mana-hero-copy">'+(a.titulo?'<h2>'+esc(a.titulo)+'</h2>':'')+(a.texto?'<p>'+esc(a.texto)+'</p>':'')+(safeUrl(a.link)?'<a class="mana-hero-link" href="'+esc(safeUrl(a.link))+'" target="_blank" rel="noopener noreferrer">'+esc(a.linkTexto||'Descobrir coleção')+' <span aria-hidden="true">↗</span></a>':'')+'</div></div>':'')+'</article>';
+  }).join('')+'</div>'+(list.length>1?'<button class="mana-arrow prev" type="button" aria-label="Anúncio anterior">‹</button><button class="mana-arrow next" type="button" aria-label="Próximo anúncio">›</button><div class="mana-dots" aria-label="Selecionar anúncio">'+list.map(function(a,i){return '<button type="button" data-slide="'+i+'" aria-label="Ir para anúncio '+(i+1)+'" aria-current="'+(i===0)+'"></button>';}).join('')+'</div>':'')+'</div>';
+  manaSlide=Math.min(manaSlide,list.length-1);
+  function show(i){
+    var slides=el.querySelectorAll('.mana-slide');if(!slides.length)return;
+    manaSlide=(i+slides.length)%slides.length;
+    slides.forEach(function(sl,j){var active=j===manaSlide;sl.classList.toggle('active',active);sl.setAttribute('aria-hidden',String(!active));var v=sl.querySelector('video');if(v){if(active){v.currentTime=0;v.play().catch(function(){});}else v.pause();}});
+    el.querySelectorAll('[data-slide]').forEach(function(b,j){b.setAttribute('aria-current',String(j===manaSlide));});
+  }
+  var prev=el.querySelector('.mana-arrow.prev'),next=el.querySelector('.mana-arrow.next');
+  if(prev)prev.onclick=function(){show(manaSlide-1);};
+  if(next)next.onclick=function(){show(manaSlide+1);};
+  el.querySelectorAll('[data-slide]').forEach(function(b){b.onclick=function(){show(Number(b.dataset.slide));};});
+  if(manaSlideTimer)clearInterval(manaSlideTimer);
+  show(manaSlide);
+  if(list.length>1&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    manaSlideTimer=setInterval(function(){if(!document.hidden)show(manaSlide+1);},6000);
+  }
 }
 
 /* ===== Vitrine: categorias e grade ===== */
@@ -556,7 +622,30 @@ $("applyCoupon").addEventListener("click", function () {
   if (!c || !c.ativo || (c.validade && c.validade < today())) { state.coupon = null; renderCart(); m.textContent = c && c.validade && c.validade < today() ? "Este cupom venceu." : "Cupom não encontrado. Confira o código e tente de novo."; m.className = "cmsg bad"; return; }
   state.coupon = code; renderCart();
 });
-$("wa").addEventListener("click", function (e) { if (!validaEntrega(true)) e.preventDefault(); });
+var enviandoPedido = false;
+$("wa").addEventListener("click", async function (e) {
+  e.preventDefault();
+  if (enviandoPedido || !validaEntrega(true)) return;
+  var itens = Object.keys(state.cart).map(function(id){return {id:Number(id),quantidade:Number(state.cart[id])};}).filter(function(x){return x.quantidade>0;});
+  if (!itens.length) {toast("O carrinho está vazio.",true);return;}
+  var digits=String(cur().store.whatsapp||'').replace(/\D/g,'');
+  if(!digits){toast("WhatsApp indisponível.",true);return;}
+  // Abrir uma aba durante o clique (evita bloqueio de pop-up após a chamada assíncrona).
+  var aba=window.open('about:blank','_blank');
+  enviandoPedido=true; var botao=$('wa');botao.textContent='Reservando produtos...';botao.setAttribute('aria-disabled','true');
+  try {
+    var r=await sb.rpc('mana_criar_pedido',{p_itens:itens,p_cliente:entrega,p_cupom:state.coupon||null,p_manual:false});
+    if(r.error)throw r.error;
+    var mensagem='*PEDIDO #'+String(r.data).slice(0,8).toUpperCase()+'*\nReserva por 30 minutos.\n\n'+pedidoTexto();
+    var url='https://wa.me/'+digits+'?text='+encodeURIComponent(mensagem);
+    state.cart={};state.coupon=null;saveCart();
+    await loadRemote();renderCart();
+    if(aba&&!aba.closed)aba.location.href=url;
+    else {var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.click();}
+    toast('Produtos reservados por 30 minutos. Envie a mensagem no WhatsApp.');
+  } catch(err){if(aba&&!aba.closed)aba.close();toast('Não foi possível reservar: '+(err.message||err),true);}
+  finally{enviandoPedido=false;botao.innerHTML='Enviar pedido pelo WhatsApp';renderCart();}
+});
 $("copy").addEventListener("click", function () {
   if (!validaEntrega(true)) return;
   var txt = pedidoTexto(), fb = $("fallback");
@@ -592,7 +681,7 @@ function renderDraftBar() {
 }
 
 function openAdmin() { if (!draft) draft = clone(DATA); $("adm").hidden = false; document.body.style.overflow = "hidden"; renderAdmin(); renderDraftBar(); }
-function closeAdmin() { $("adm").hidden = true; document.body.style.overflow = ""; renderStore(); }
+function closeAdmin() { if(adminMode){window.location.href="index.html";return;} $("adm").hidden = true; document.body.style.overflow = ""; renderStore(); }
 $("admBtn").addEventListener("click", openAdmin);
 document.addEventListener("keydown", function (e) { if (e.key === "Escape") { if (!$("adm").hidden) closeAdmin(); else if (!$("drawer").hidden) closeCart(); } });
 
@@ -686,7 +775,7 @@ function tabAnuncios(d) {
       '<label class="fld">Tipo<select data-coll="anuncios" data-i="' + i + '" data-f="tipo" data-t="text"><option value="aviso"' + (a.tipo === "aviso" ? " selected" : "") + '>Aviso</option><option value="promocao"' + (a.tipo === "promocao" ? " selected" : "") + '>Promoção</option><option value="novidade"' + (a.tipo === "novidade" ? " selected" : "") + ">Novidade</option></select></label>" +
       '<label class="fld">Título<input type="text" data-coll="anuncios" data-i="' + i + '" data-f="titulo" data-t="text" value="' + esc(a.titulo) + '" maxlength="70"></label>' +
       '<label class="fld wide">Texto<textarea data-coll="anuncios" data-i="' + i + '" data-f="texto" data-t="text" maxlength="240">' + esc(a.texto) + "</textarea></label>" +
-      '<div class="fld wide"><span>Imagem (opcional)</span><div class="prev">' + (a.fotoId ? '<div class="pth" style="width:96px;height:64px"><img src="/_blob/' + esc(a.fotoId) + '" alt="Imagem do anúncio"></div>' : "") + (assetsApi ? '<label class="btn sm">' + (a.fotoId ? "Trocar imagem" : "Enviar imagem") + '<input type="file" class="sr" accept="image/*" data-afile="' + i + '"></label>' : '<span class="note">O envio de imagens não está disponível nesta visualização.</span>') + (a.fotoId ? '<button class="btn sm dng" type="button" data-act="rmaimg" data-i="' + i + '">Remover imagem</button>' : "") + "</div></div>" +
+      '<div class="fld wide"><span>Mídia do banner — imagem, GIF ou vídeo (MP4/WebM)</span><div class="prev">' + (a.fotoId ? '<div class="pth" style="width:120px;height:72px">' + (/\.(mp4|webm)(?:[?#]|$)/i.test(a.fotoId)||/\/videos\//i.test(a.fotoId) ? '<video muted playsinline controls style="width:100%;height:100%;object-fit:cover" src="'+esc(a.fotoId)+'"></video>' : '<img src="'+esc(a.fotoId)+'" alt="Mídia do anúncio">') + '</div>' : "") + (assetsApi ? '<label class="btn sm">' + (a.fotoId ? "Trocar mídia" : "Enviar mídia") + '<input type="file" class="sr" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm" data-afile="' + i + '"></label>' : '<span class="note">O envio de imagens não está disponível nesta visualização.</span>') + (a.fotoId ? '<button class="btn sm dng" type="button" data-act="rmaimg" data-i="' + i + '">Remover imagem</button>' : "") + "</div></div>" +
       '<label class="fld">Link do botão (opcional)<input type="text" inputmode="url" data-coll="anuncios" data-i="' + i + '" data-f="link" data-t="text" value="' + esc(a.link || "") + '" placeholder="https://"><small>Abre em outra aba. Use o endereço completo, com https://</small></label>' +
       '<label class="fld">Texto do botão<input type="text" data-coll="anuncios" data-i="' + i + '" data-f="linkTexto" data-t="text" value="' + esc(a.linkTexto || "") + '" placeholder="Saiba mais" maxlength="30"></label>' +
       '<label class="fld"><span>No ar</span><span class="switch"><input type="checkbox" data-coll="anuncios" data-i="' + i + '" data-f="ativo" data-t="bool"' + (a.ativo ? " checked" : "") + '><span class="track"></span></span></label></div>' +
@@ -698,7 +787,7 @@ function tabAnuncios(d) {
 /* ---- Loja ---- */
 function tabLoja(d) {
   var s = d.store, usados = {};
-  var lgHtml = s.logoId ? '<img src="/_blob/' + esc(s.logoId) + '" alt="Logo atual">' : esc(s.iniciais || "");
+  var lgHtml = validImage(s.logoId) ? '<img src="' + esc(s.logoId) + '" alt="Logo atual">' : esc(s.iniciais || "");
   d.produtos.forEach(function (p) { usados[p.cat] = (usados[p.cat] || 0) + 1; });
   return '<section class="sec"><h3>Logo</h3><p>Aparece no cabeçalho da loja, em formato redondo. Use uma imagem quadrada, de preferência PNG.</p><div class="prev"><div class="logo" style="width:72px;height:72px' + (s.logoId ? ';background:var(--surface)' : '') + '">' + lgHtml + '</div>' + (assetsApi ? '<label class="btn sm">Enviar logo<input type="file" accept="image/*" data-logofile hidden></label>' : '<span class="note">O envio de imagens não está disponível nesta visualização.</span>') + (s.logoId ? '<button class="btn sm dng" type="button" data-act="rmlogo">Remover logo</button>' : '') + '</div></section>' +
     '<section class="sec"><h3>Dados da loja</h3><p>Nome, slogan e o número que recebe os pedidos.</p><div class="fgrid">' +
@@ -789,8 +878,8 @@ adm.addEventListener("change", function (e) {
 function subirImgAnuncio(input) {
   var i = Number(input.dataset.afile), file = input.files && input.files[0];
   if (!file || !assetsApi || !draft || !draft.anuncios[i]) return;
-  if (!/^image\//.test(file.type)) { toast("Escolha um arquivo de imagem.", true); return; }
-  toast("Enviando imagem...");
+  if (!/^(image\/(jpeg|png|webp|gif)|video\/(mp4|webm))$/.test(file.type)) { toast("Use JPG, PNG, WebP, GIF, MP4 ou WebM.", true); return; }
+  toast("Enviando mídia...");
   assetsApi.upload(file).then(function (r) { draft.anuncios[i].fotoId = r.id; renderAdmin(); renderStore(); updatePill(); toast("Imagem enviada. Clique em Publicar alterações para valer na loja."); }, function (err) { toast("Não foi possível enviar a imagem" + (err && err.code ? " (" + err.code + ")" : "") + ".", true); });
 }
 function subirLogo(input) {
@@ -833,41 +922,64 @@ function buildDoc(data) {
   return "<!doctype html><html><head><meta charset=utf8><meta name=viewport content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><style>" + reset + "</style></head><body>" +
     HEAD + '\n<style id="css">' + css + '</style>\n<div id="root"></div>\n<script type="application/json" id="data">' + json + "<\/script>\n<script id=\"app\">" + app + "<\/script>\n</body></html>";
 }
-function publicar() {
-  var errs = validar(draft); A.errors = errs;
-  if (errs.length) { renderAdmin(); adm.scrollTop = 0; return; }
-  var api = window.claude && window.claude.use ? window.claude.use("artifact") : Promise.resolve(null);
-  api.then(function (art) {
-    if (!art) { toast("Publicar não está disponível nesta visualização.", true); return; }
-    ssSet("mana_draft", JSON.stringify(draft)); ssSet("mana_reopen", "1");
-    $("pubBtn").disabled = true; $("pubBtn").textContent = "Publicando...";
-    return art.publish(buildDoc(draft)).then(function () { /* a página recarrega com a nova versão */ }, function (err) {
-      var c = err && err.code;
-      $("pubBtn").disabled = false; $("pubBtn").textContent = "Publicar alterações";
-      if (c === "conflict") toast("Outra versão foi publicada antes. A página vai recarregar; seu rascunho fica disponível.", true);
-      else if (c === "not_writer" || c === "not_granted" || c === "consent_required") toast("Esta conta não tem permissão para publicar alterações.", true);
-      else if (c === "too_large") toast("A página ficou grande demais. Remova fotos ou produtos.", true);
-      else if (c === "rate_limited") toast("Muitas publicações seguidas. Aguarde um instante e tente de novo.", true);
-      else toast("Não foi possível publicar agora. Tente de novo.", true);
-    });
-  });
+async function publicar() {
+ var errs=validar(draft); A.errors=errs;
+ if(errs.length){renderAdmin();adm.scrollTop=0;return;}
+ var btn=$('pubBtn'); if(btn){btn.disabled=true;btn.textContent='Publicando...';}
+ try {
+  // Optimistic concurrency: do not silently overwrite a partner's changes.
+  var check=await sb.from('mana_conteudo').select('atualizado_em').eq('id',1).single();
+  if(check.error) throw check.error;
+  if(remoteVersion && check.data.atualizado_em!==remoteVersion) throw Error('Seu sócio publicou alterações. Recarregue o painel antes de publicar para evitar sobrescrever.');
+  var res=await sb.from('mana_conteudo').update({conteudo:draft,atualizado_em:new Date().toISOString()}).eq('id',1).eq('atualizado_em',check.data.atualizado_em).select('atualizado_em').single();
+  if(res.error) throw res.error;
+  DATA=clone(draft);remoteVersion=res.data.atualizado_em;ssDel('mana_draft');
+  renderStore();renderAdmin();toast('Alterações publicadas na loja!');
+ } catch(err){toast('Não foi possível publicar: '+err.message,true);}
+ finally {var b=$('pubBtn');if(b){b.disabled=!dirty();b.textContent='Publicar alterações';}}
 }
 
 /* ===== Início ===== */
 renderStore();
-(function boot() {
-  var c = window.claude;
-  if (!c || !c.use) return;
-  c.use("user").then(function (u) { return u ? u.canEdit() : false; }).catch(function () { return false; }).then(function (ok) {
-    if (!ok) return;
-    isAdmin = true; $("admBtn").hidden = false;
-    return c.use("assets").then(function (a) { assetsApi = a; }, function () {}).then(function () {
-      var saved = ssGet("mana_draft"), reopen = ssGet("mana_reopen");
-      if (saved) { try { var s = JSON.parse(saved); if (JSON.stringify(s) === JSON.stringify(DATA)) ssDel("mana_draft"); else A.recover = s; } catch (e) { ssDel("mana_draft"); } }
-      if (reopen) { ssDel("mana_reopen"); if (A.recover) { draft = clone(A.recover); A.recover = null; } openAdmin(); if (!dirty()) toast("Alterações publicadas."); }
-      renderDraftBar();
-    });
-  });
+(async function boot() {
+ try {
+  if(adminMode){
+   var login=document.getElementById('mana-login');
+   async function showPanel(){
+    var sess=await sb.auth.getSession();
+    if(!sess.data.session){login.hidden=false;return;}
+    var role=await sb.rpc('sou_admin');
+    if(role.error||role.data!==true){login.hidden=false;document.getElementById('mana-login-error').textContent='Esta conta não é administradora.';return;}
+    isAdmin=true; assetsApi={upload:async function(file){
+      var isVideo=/^video\//.test(file.type);
+      if(file.size>(isVideo?20:5)*1024*1024) throw Error(isVideo?'Vídeo: máximo 20 MB':'Imagem: máximo 5 MB');
+      if(!['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm'].includes(file.type))throw Error('Formato não permitido');
+      var path=crypto.randomUUID()+'.'+(file.name.split('.').pop()||'png').toLowerCase();
+      var bucket=isVideo?'videos':'Produtos';
+      var up=await sb.storage.from(bucket).upload(path,file,{contentType:file.type});
+      if(up.error)throw up.error;
+      return {id:sb.storage.from(bucket).getPublicUrl(path).data.publicUrl};
+    }};
+    await loadRemote();login.hidden=true;openAdmin();
+   }
+   document.getElementById('mana-login-form').onsubmit=async function(e){
+    e.preventDefault();var errorEl=document.getElementById('mana-login-error');errorEl.textContent='Entrando...';
+    var r=await sb.auth.signInWithPassword({email:document.getElementById('mana-email').value.trim(),password:document.getElementById('mana-password').value});
+    if(r.error){errorEl.textContent=r.error.message;return;}
+    errorEl.textContent='';try{await showPanel();}catch(ex){errorEl.textContent=ex.message;}
+   };
+   document.getElementById('mana-logout').onclick=async function(){await sb.auth.signOut();location.reload();};
+   await showPanel();
+  }else{
+   await loadRemote();
+   sb.channel('mana-conteudo-atualizacoes').on('postgres_changes',{event:'UPDATE',schema:'public',table:'mana_conteudo',filter:'id=eq.1'},function(){loadRemote().catch(console.error);}).subscribe();
+   window.addEventListener('focus',function(){loadRemote().catch(console.error);});
+   setInterval(function(){loadRemote().catch(console.error);},30000);
+  }
+ }catch(err){
+  console.error(err);
+  var e=document.getElementById('mana-load-error');if(e)e.textContent='Erro ao conectar ao Supabase: '+err.message;
+ }
 })();
 })();
 </script>
