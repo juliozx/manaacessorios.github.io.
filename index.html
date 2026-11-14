@@ -579,8 +579,11 @@ function pedidoTexto() {
   var linha = "━━━━━━━━━━━━━━━━━━";
   var itens = Object.keys(state.cart).filter(function (id) { var p = byId(id); return p && visible(p); }).map(function (id, i) { var p = byId(id), q = Math.min(state.cart[id], p.estoque), u = precoDe(p); return (i + 1) + ". " + p.nome + "\nQtd: " + q + " x " + brl(u) + " = " + brl(u * q); });
   var txt = "Olá! Segue meu pedido:\n\n" + linha + "\n\n" + itens.join("\n\n") + "\n\n\n" + linha + "\n\n";
-  txt += "📦 Total de itens: " + t.n + "\nSubtotal: " + brl(t.sub) + "\n";
-  if (state.coupon && t.disc > 0) txt += "🏷️ Desconto (cupom " + state.coupon + "): -" + brl(t.disc) + "\n";
+  txt += "📦 Total de itens: " + t.n + "\n🛍️ Subtotal: " + brl(t.sub) + "\n";
+  if (state.coupon && t.disc > 0) {
+    txt += "🎟️ Cupom: " + state.coupon + "\n";
+    txt += "💸 Desconto: -" + brl(t.disc) + "\n";
+  }
   txt += "💰 Valor total: " + brl(t.total) + "\n\n" + linha + "\n\n" + entregaTexto() + linha + "\n\nPedido gerado automaticamente pelo catálogo " + cur().store.nome;
   return txt;
 }
