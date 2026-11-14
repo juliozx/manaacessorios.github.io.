@@ -1,4 +1,20 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* Termos de compra — Mana Acessórios */
+.mana-terms-footer{display:inline-block;margin:7px 0 10px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.mana-terms-consent{display:flex;align-items:flex-start;gap:9px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--soft);font-size:12.5px;line-height:1.5;color:var(--ink)}
+.mana-terms-consent input{flex:0 0 auto;width:17px;height:17px;margin:2px 0 0;accent-color:var(--accent);cursor:pointer}
+.mana-terms-link{border:0;padding:0;background:transparent;color:var(--accent);font:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600;cursor:pointer}
+.mana-terms-dialog{width:min(92vw,620px);max-height:min(85dvh,760px);border:1px solid var(--line);border-radius:18px;padding:0;background:var(--surface);color:var(--ink);box-shadow:0 22px 90px #0003}
+.mana-terms-dialog::backdrop{background:rgba(30,20,25,.58)}
+.mana-terms-header{position:sticky;top:0;background:var(--surface);padding:19px 24px 15px;display:flex;gap:14px;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line)}
+.mana-terms-header h2{margin:0;font:700 21px/1.25 var(--font-display)}
+.mana-terms-close{background:var(--soft);border:0;border-radius:50%;width:32px;height:32px;flex:none;font-size:23px;line-height:1;cursor:pointer}
+.mana-terms-body{padding:20px 24px 25px;line-height:1.65;font-size:14px;overflow-wrap:anywhere}
+.mana-terms-body h3{font:700 17px var(--font-display);margin:22px 0 6px}
+.mana-terms-body p{margin:0 0 10px}
+.mana-terms-body .mana-terms-intro{color:var(--muted)}
+@media(max-width:480px){.mana-terms-header{padding:16px}.mana-terms-body{padding:16px}}
+</style></head><body>
 <title>Mana Semijoias</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -397,7 +413,7 @@ $("root").innerHTML =
   '<div class="meta"><span id="count">0 itens</span><div class="right"><label class="switch"><input type="checkbox" id="fPromo"><span class="track"></span>Promoções</label><label class="switch"><input type="checkbox" id="fStock"><span class="track"></span>Disponíveis</label>' +
   '<label for="sort" style="display:inline-flex;align-items:center;gap:6px">Ordenar <select id="sort"><option value="rel">Em destaque</option><option value="asc">Menor preço</option><option value="desc">Maior preço</option><option value="az">Nome (A–Z)</option></select></label></div></div></div>' +
   '<section class="grid" id="grid" aria-live="polite"></section>' +
-  '<footer><p>Siga a gente no Instagram: <a href="https://www.instagram.com/maanaaacessorios_" target="_blank" rel="noopener noreferrer">@maanaaacessorios_</a></p>Os preços e o estoque podem mudar. Seu pedido só é confirmado depois da conversa no WhatsApp.</footer></main>' +
+  '<footer><p>Siga a gente no Instagram: <a href="https://www.instagram.com/maanaaacessorios_" target="_blank" rel="noopener noreferrer">@maanaaacessorios_</a></p><p><button type="button" class="mana-terms-link mana-terms-footer" data-open-terms>Termos de Compra</button></p>Os preços e o estoque podem mudar. Seu pedido só é confirmado depois da conversa no WhatsApp.</footer></main>' +
   '<button class="fab" id="fab" type="button" aria-label="Abrir carrinho">' + ICON_BAG + '<span>Carrinho</span><span class="count" id="fabCount">0</span><span class="sum" id="fabSum"></span></button>' +
   '<div class="scrim" id="scrim" hidden></div>' +
   '<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" hidden>' +
@@ -417,12 +433,28 @@ $("root").innerHTML =
   '<label class="efld">Bairro (opcional)<input id="eBairro" type="text" autocomplete="off" maxlength="60"></label>' +
   '<label class="efld">Cidade e UF (opcional)<input id="eCidade" type="text" autocomplete="off" maxlength="60"></label>' +
   '</div><div class="cmsg bad" id="emsg" role="alert"></div></fieldset>' +
+  '<label class="mana-terms-consent"><input type="checkbox" id="manaTermsAccepted"><span>Li e estou ciente dos <button type="button" class="mana-terms-link" data-open-terms>Termos de Compra</button>.</span></label>' +
   '<a class="wa" id="wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.7-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Enviar pedido pelo WhatsApp</a>' +
   '<p class="hint">Você será levado ao WhatsApp da loja com o pedido pronto.</p>' +
   '<button class="copy" id="copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span id="copyLabel">Copiar pedido</span></button>' +
   '<textarea class="fallback" id="fallback" readonly hidden aria-label="Texto do pedido para copiar"></textarea>' +
   '<p class="hint">Prefere o Instagram? Copie o pedido e cole no direct da loja.</p></div></aside>' +
+  '<dialog class="mana-terms-dialog" id="manaTermsDialog" aria-labelledby="manaTermsTitle"><div class="mana-terms-header"><h2 id="manaTermsTitle">Informações de Compra e Entrega</h2><button class="mana-terms-close" type="button" id="manaTermsClose" aria-label="Fechar termos">×</button></div><div class="mana-terms-body">' +
+  '<p class="mana-terms-intro">Na Mana Acessórios, queremos proporcionar uma experiência de compra simples, segura e personalizada. Confira como funciona nosso atendimento.</p>' +
+  '<h3>Pagamentos</h3><p>Após finalizar seu pedido no site, nossa equipe informará pelo WhatsApp as opções de pagamento disponíveis e orientará você na conclusão da compra.</p>' +
+  '<h3>Frete e Entrega</h3><p>O valor do frete e o prazo de entrega serão informados pelo WhatsApp, de acordo com a localização da cliente, antes da confirmação da compra.</p>' +
+  '<h3>Trocas e Devoluções</h3><p>Para solicitar uma troca ou devolução, entre em contato com nossa equipe pelo WhatsApp. Em compras realizadas pela internet, respeitamos o direito de arrependimento de até 7 dias após o recebimento, conforme o Código de Defesa do Consumidor, além das demais garantias legais.</p>' +
+  '<h3>Atendimento Personalizado</h3><p>Dúvidas sobre pedidos, pagamentos, entregas ou produtos? Nossa equipe estará disponível para orientar você pelo WhatsApp.</p>' +
+  '</div></dialog>' +
   '<div class="adm" id="adm" hidden></div><div id="draftbar" class="draftbar" hidden></div><div id="toast" class="toast" aria-hidden="true" hidden></div><div id="live" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>';
+
+/* Consulta dos Termos de Compra: acessível pelo rodapé e pelo carrinho. */
+document.addEventListener('click', function(e) {
+  var trigger=e.target.closest('[data-open-terms]');
+  if(trigger){e.preventDefault();$('manaTermsDialog').showModal();}
+});
+$('manaTermsClose').addEventListener('click', function(){ $('manaTermsDialog').close(); });
+$('manaTermsDialog').addEventListener('click', function(e){if(e.target===$('manaTermsDialog'))$('manaTermsDialog').close();});
 
 /* ===== Estado da vitrine ===== */
 var state = { cat: "Todos", q: "", promo: false, stock: false, sort: "rel", cart: lsGet("mana_cart", {}), coupon: null };
@@ -628,6 +660,7 @@ $("applyCoupon").addEventListener("click", function () {
 var enviandoPedido = false;
 $("wa").addEventListener("click", async function (e) {
   e.preventDefault();
+  if (!$('manaTermsAccepted').checked) {toast('Leia e confirme os Termos de Compra antes de enviar o pedido.',true);$('manaTermsAccepted').focus();return;}
   if (enviandoPedido || !validaEntrega(true)) return;
   var itens = Object.keys(state.cart).map(function(id){return {id:Number(id),quantidade:Number(state.cart[id])};}).filter(function(x){return x.quantidade>0;});
   if (!itens.length) {toast("O carrinho está vazio.",true);return;}
@@ -641,6 +674,7 @@ $("wa").addEventListener("click", async function (e) {
     if(r.error)throw r.error;
     var mensagem='*PEDIDO #'+String(r.data).slice(0,8).toUpperCase()+'*\nReserva por 30 minutos.\n\n'+pedidoTexto();
     var url='https://wa.me/'+digits+'?text='+encodeURIComponent(mensagem);
+    $('manaTermsAccepted').checked=false;
     state.cart={};state.coupon=null;saveCart();
     await loadRemote();renderCart();
     if(aba&&!aba.closed)aba.location.href=url;
